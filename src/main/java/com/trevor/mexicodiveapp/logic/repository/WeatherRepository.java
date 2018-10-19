@@ -1,7 +1,9 @@
 package com.trevor.mexicodiveapp.logic.repository;
 
-import com.trevor.mexicodiveapp.logic.model.apiWeather.ApiWeatherResponse;
+import com.trevor.mexicodiveapp.logic.model.Weather;
 
 public interface WeatherRepository {
-    ApiWeatherResponse getWeather(String location);
+    Weather getWeatherByCity(String location);
+
+    Weather getWeatherByCoordinates(Double lat, Double lon);
 }

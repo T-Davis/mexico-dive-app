@@ -1,4 +1,6 @@
-package com.trevor.mexicodiveapp.logic.model.apiWeather;
+package com.trevor.mexicodiveapp.data.apiWeather;
+
+import com.trevor.mexicodiveapp.data.apiWeather.apiWeatherObjects.*;
 
 public class ApiWeatherResponse {
     private Coordinates coord;

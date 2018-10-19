@@ -1,8 +1,8 @@
 package com.trevor.mexicodiveapp.logic.service;
 
 
-import com.trevor.mexicodiveapp.data.ApiWeatherRepository;
-import com.trevor.mexicodiveapp.logic.model.apiWeather.ApiWeatherResponse;
+import com.trevor.mexicodiveapp.data.apiWeather.ApiWeatherRepository;
+import com.trevor.mexicodiveapp.logic.model.Weather;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,7 +15,11 @@ public class WeatherService {
         this.apiWeatherRepository = apiWeatherRepository;
     }
 
-    public ApiWeatherResponse getResult(String location) {
-        return apiWeatherRepository.getWeather(location);
+    public Weather getWeatherByCity(String city) {
+        return apiWeatherRepository.getWeatherByCity(city);
+    }
+
+    public Weather getWeatherByCoordinates(Double lat, Double lon) {
+        return apiWeatherRepository.getWeatherByCoordinates(lat, lon);
     }
 }

@@ -1,4 +1,4 @@
-package com.trevor.mexicodiveapp.logic.model.apiWeather;
+package com.trevor.mexicodiveapp.data.apiWeather.apiWeatherObjects;
 
 public class Wind {
     private Double speed;

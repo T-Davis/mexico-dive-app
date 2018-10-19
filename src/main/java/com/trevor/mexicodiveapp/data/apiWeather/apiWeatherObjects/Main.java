@@ -1,13 +1,13 @@
-package com.trevor.mexicodiveapp.logic.model.apiWeather;
+package com.trevor.mexicodiveapp.data.apiWeather.apiWeatherObjects;
 
 public class Main {
-    private Integer temp;
+    private Double temp;
     private Integer pressure;
     private Integer humidity;
-    private Integer temp_min;
-    private Integer temp_max;
+    private Double temp_min;
+    private Double temp_max;
 
-    public Integer getTemp() {
+    public Double getTemp() {
         return temp;
     }
 
@@ -19,11 +19,11 @@ public class Main {
         return humidity;
     }
 
-    public Integer getTemp_min() {
+    public Double getTemp_min() {
         return temp_min;
     }
 
-    public Integer getTemp_max() {
+    public Double getTemp_max() {
         return temp_max;
     }
 }
