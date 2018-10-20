@@ -1,7 +1,7 @@
-package com.trevor.mexicodiveapp.presentation;
+package com.trevor.mexicodiveapp.presentation.api;
 
 import com.trevor.mexicodiveapp.logic.model.Dive;
-import com.trevor.mexicodiveapp.logic.service.DivesService;
+import com.trevor.mexicodiveapp.logic.service.DiveService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,49 +11,49 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/user/logbook/dives")
-public class DivesController {
+public class DiveController {
 
     @Resource
-    private DivesService divesService;
+    private DiveService diveService;
 
     @Autowired
-    public DivesController(DivesService divesService) {
-        this.divesService = divesService;
+    public DiveController(DiveService diveService) {
+        this.diveService = diveService;
     }
 
     @GetMapping
     public List<Dive> getAllDives() {
-        return divesService.getAllDives();
+        return diveService.getAllDives();
     }
 
     @GetMapping("/location/{location}")
     public List<Dive> getDiveByLocation(@PathVariable String location) {
-        return divesService.getDiveByLocation(location);
+        return diveService.getDiveByLocation(location);
     }
 
     @GetMapping("/date/{date}")
     public List<Dive> getDiveByDate(@PathVariable String date) {
-        return divesService.getDiveByDate(LocalDate.parse(date));
+        return diveService.getDiveByDate(LocalDate.parse(date));
     }
 
     @GetMapping("/id/{id}")
     public Dive getDiveById(@PathVariable Integer id) {
-        return divesService.getDiveById(id);
+        return diveService.getDiveById(id);
     }
 
     @PostMapping
     public Dive save(@RequestBody Dive dive) {
-        return divesService.save(dive);
+        return diveService.save(dive);
     }
 
     @PutMapping("/{id}")
     public Dive updateDiveById(@PathVariable int id, @RequestBody Dive dive) {
-        return divesService.updateDiveById(id, dive);
+        return diveService.updateDiveById(id, dive);
     }
 
     @DeleteMapping("/{id}")
     public Dive deleteDive(@PathVariable int id) {
-        return divesService.delete(id);
+        return diveService.delete(id);
     }
 
 }

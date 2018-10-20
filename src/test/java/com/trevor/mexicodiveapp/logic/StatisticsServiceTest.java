@@ -1,7 +1,7 @@
 package com.trevor.mexicodiveapp.logic;
 
 import com.trevor.mexicodiveapp.logic.model.Dive;
-import com.trevor.mexicodiveapp.logic.service.DivesService;
+import com.trevor.mexicodiveapp.logic.service.DiveService;
 import com.trevor.mexicodiveapp.logic.service.StatisticsService;
 import org.junit.Before;
 import org.junit.Test;
@@ -14,27 +14,31 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.when;
 
 public class StatisticsServiceTest {
-    private List<Dive> diveList = new ArrayList<>();
+    private List<Dive> diveList;
     private StatisticsService statisticsService;
-    private DivesService divesServiceMock;
+    private DiveService diveServiceMock;
 
     @Before
     public void setUp() {
+        diveList = new ArrayList<>();
+
         Dive dive1 = new Dive();
-        Dive dive2 = new Dive();
         dive1.setDurationInMinutes(60);
-        dive2.setDurationInMinutes(40);
         dive1.setMaxDepthInMeters(18);
-        dive2.setMaxDepthInMeters(30);
         diveList.add(dive1);
+
+        Dive dive2 = new Dive();
+        dive2.setDurationInMinutes(40);
+        dive2.setMaxDepthInMeters(30);
         diveList.add(dive2);
-        divesServiceMock = Mockito.mock(DivesService.class);
-        statisticsService = new StatisticsService(divesServiceMock);
+
+        diveServiceMock = Mockito.mock(DiveService.class);
+        statisticsService = new StatisticsService(diveServiceMock);
     }
 
     @Test
     public void whenGettingTotalNumberOfDives_shouldReturnTotalNumberOfDives() {
-        when(divesServiceMock.getAllDives()).thenReturn(diveList);
+        when(diveServiceMock.getAllDives()).thenReturn(diveList);
 
         double totalNumberOfDives = statisticsService.getTotalNumberOfDives();
 
@@ -42,8 +46,8 @@ public class StatisticsServiceTest {
     }
 
     @Test
-    public void whenGettingTotalTimeInWater_shouldReturnTotalTimeInWaterInMinutes() {
-        when(divesServiceMock.getAllDives()).thenReturn(diveList);
+    public void whenGettingTotalTimeInWater_shouldReturnTotalTimeInWater() {
+        when(diveServiceMock.getAllDives()).thenReturn(diveList);
 
         double totalTimeInWaterInMinutes = statisticsService.getTotalTimeInWaterInMinutes();
 
@@ -51,8 +55,8 @@ public class StatisticsServiceTest {
     }
 
     @Test
-    public void whenGettingMaxDepth_shouldReturnMaxDepthInMeters() {
-        when(divesServiceMock.getAllDives()).thenReturn(diveList);
+    public void whenGettingMaxDepth_shouldReturnMaxDepth() {
+        when(diveServiceMock.getAllDives()).thenReturn(diveList);
 
         double maxDepthInMetersForAllDives = statisticsService.getMaxDepthInMetersForAllDives(diveList);
 
@@ -61,8 +65,8 @@ public class StatisticsServiceTest {
 
 
     @Test
-    public void whenGettingMinDepth_shouldReturnMinDepthInMeters() {
-        when(divesServiceMock.getAllDives()).thenReturn(diveList);
+    public void whenGettingMinDepth_shouldReturnMinDepth() {
+        when(diveServiceMock.getAllDives()).thenReturn(diveList);
 
         double minDepthInMetersForAllDives = statisticsService.getMinDepthInMetersForAllDives(diveList);
 
@@ -71,8 +75,8 @@ public class StatisticsServiceTest {
 
 
     @Test
-    public void whenGettingAverageDepthInMetersForAllDives_shouldReturnAverageDepthInMeters() {
-        when(divesServiceMock.getAllDives()).thenReturn(diveList);
+    public void whenGettingAverageDepth_shouldReturnAverageDepth() {
+        when(diveServiceMock.getAllDives()).thenReturn(diveList);
 
         double averageDepthInMetersForAllDives = statisticsService.getAverageDepthInMetersForAllDives(diveList);
 

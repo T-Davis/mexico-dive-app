@@ -9,19 +9,19 @@ import java.util.List;
 @Service
 public class StatisticsService {
 
-    private DivesService divesService;
+    private DiveService diveService;
 
     @Autowired
-    public StatisticsService(DivesService divesService) {
-        this.divesService = divesService;
+    public StatisticsService(DiveService diveService) {
+        this.diveService = diveService;
     }
 
     public double getTotalNumberOfDives() {
-        return divesService.getAllDives().size();
+        return diveService.getAllDives().size();
     }
 
     public double getTotalTimeInWaterInMinutes() {
-        List<Dive> allDives = divesService.getAllDives();
+        List<Dive> allDives = diveService.getAllDives();
         double totalTimeInWater = 0;
         for (Dive dive : allDives) {
             totalTimeInWater += dive.getDurationInMinutes();

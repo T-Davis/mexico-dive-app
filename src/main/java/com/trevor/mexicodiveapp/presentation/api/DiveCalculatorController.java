@@ -1,4 +1,4 @@
-package com.trevor.mexicodiveapp.presentation;
+package com.trevor.mexicodiveapp.presentation.api;
 
 import com.trevor.mexicodiveapp.logic.service.DiveCalculatorService;
 import org.springframework.web.bind.annotation.GetMapping;

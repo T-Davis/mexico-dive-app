@@ -1,0 +1,67 @@
+table.hovertable {
+	font-family: verdana,arial,sans-serif;
+	font-size:11px;
+	color:#333333;
+	border-width: 1px;
+	border-color: #999999;
+	border-collapse: collapse;
+}
+table.hovertable th {
+	background-color:#c3dde0;
+	border-width: 1px;
+	padding: 8px;
+	border-style: solid;
+	border-color: #a9c6c9;
+}
+table.hovertable tr {
+	background-color:#d4e3e5;
+}
+table.hovertable td {
+	border-width: 1px;
+	padding: 8px;
+	border-style: solid;
+	border-color: #a9c6c9;
+}
+
+table {
+  width: 100%;
+  text-align: left;
+  border-collapse: collapse;
+  margin: 0 0 1em 0;
+  caption-side: top;
+}
+
+caption, td, th {
+  padding: 0.3em;
+}
+
+tbody {
+  border-top: 1px solid #000;
+  border-bottom: 1px solid #000;
+}
+
+tbody th, tfoot th {
+  border: 0;
+}
+
+th.name {
+  width: 25%;
+}
+
+th.location {
+  width: 20%;
+}
+
+th.lasteruption {
+  width: 30%;
+}
+
+th.eruptiontype {
+  width: 25%;
+}
+
+tfoot {
+  text-align: center;
+  color: #555;
+  font-size: 0.8em;
+}

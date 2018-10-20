@@ -9,11 +9,11 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Service
-public class DivesService {
+public class DiveService {
     private DiveRepository diveRepository;
 
     @Autowired
-    public DivesService(DiveRepository diveRepository) {
+    public DiveService(DiveRepository diveRepository) {
         this.diveRepository = diveRepository;
     }
 
