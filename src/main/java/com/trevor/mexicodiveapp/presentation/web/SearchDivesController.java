@@ -5,10 +5,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
-public class ContactController {
+public class SearchDivesController {
 
-    @GetMapping("/contact")
-    public String contact(Model model) {
-        return "contact";
+    @GetMapping("/search")
+    public String search(Model model) {
+        return "searchDives";
     }
+
 }

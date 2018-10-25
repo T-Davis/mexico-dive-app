@@ -5,6 +5,15 @@
 </head>
 <body class="container">
 <div th:replace="fragments/header :: header"></div>
+
+<form>
+    <div class="form-group">
+        <label>Search for a dive</label>
+        <input type="search" class="form-control" aria-describedby="searchHelp" placeholder="Enter location">
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
 <div th:replace="fragments/footer :: footer"></div>
 
 </body>

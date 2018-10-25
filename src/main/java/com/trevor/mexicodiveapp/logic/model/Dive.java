@@ -1,9 +1,12 @@
 package com.trevor.mexicodiveapp.logic.model;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.time.LocalDate;
 
 public class Dive {
     private int id;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate date;
     private String location;
     private double durationInMinutes;

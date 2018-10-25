@@ -10,9 +10,8 @@ import java.time.LocalDate;
 public class WeathersController {
 
     @GetMapping("/weather")
-    public String home(Model model) {
+    public String weather(Model model) {
         model.addAttribute("date", LocalDate.now());
-//        model.addAttribute("classActiveSettings","active");
         return "weather";
     }
 }

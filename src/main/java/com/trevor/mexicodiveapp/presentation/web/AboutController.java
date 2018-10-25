@@ -9,7 +9,6 @@ public class AboutController {
 
     @GetMapping("/about")
     public String about(Model model) {
-//        model.addAttribute("classActiveSettings","active");
         return "about";
     }
 }

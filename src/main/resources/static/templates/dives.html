@@ -3,19 +3,20 @@
 <head>
     <div th:replace="fragments/head :: head"></div>
 </head>
-<body>
+<body class="container">
 <div th:replace="fragments/header :: header"></div>
 
-<h1>DiveShop - List of Dives</h1>
 <table class="table">
     <thead>
     <tr>
+        <th> ID</th>
         <th> Date</th>
         <th> Location</th>
         <th> Duration</th>
         <th> Max Depth</th>
         <th> Water Conditions</th>
         <th> Safety Stop</th>
+
     </tr>
     </thead>
     <tbody>
@@ -23,12 +24,19 @@
         <td colspan="2"> No Dives Available</td>
     </tr>
     <tr th:each="dive : ${dives}">
-        <td th:text="${dive.date}"/>
-        <td th:text="${dive.location}"/>
-        <td th:text="${dive.durationInMinutes}"/>
-        <td th:text="${dive.maxDepthInMeters}"/>
-        <td th:text="${dive.waterConditions}"/>
-        <td th:text="${dive.safetyStop}"/>
+
+        <form action="#" th:action="@{/dives/${dive.id}}" method="delete">
+            <td th:text="${dive.id}"/>
+            <td th:text="${dive.date}"/>
+            <td th:text="${dive.location}"/>
+            <td th:text="${dive.durationInMinutes}"/>
+            <td th:text="${dive.maxDepthInMeters}"/>
+            <td th:text="${dive.waterConditions}"/>
+            <td th:text="${dive.safetyStop}"/>
+            <td>
+                <button type="submit" class="btn btn-primary">Delete</button>
+            </td>
+        </form>
     </tr>
     </tbody>
 </table>
