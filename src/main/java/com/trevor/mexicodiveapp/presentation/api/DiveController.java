@@ -10,7 +10,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 @RestController
-@RequestMapping("/user/logbook/dives")
+@RequestMapping("/api/user/logbook/dives")
 public class DiveController {
 
     @Resource
