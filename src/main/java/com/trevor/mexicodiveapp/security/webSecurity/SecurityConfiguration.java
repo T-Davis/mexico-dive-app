@@ -1,4 +1,4 @@
-package com.trevor.mexicodiveapp.presentation.web.configuration;
+package com.trevor.mexicodiveapp.security.webSecurity;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;

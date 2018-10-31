@@ -1,12 +1,10 @@
 package com.trevor.mexicodiveapp.logic.repository;
 
 import com.trevor.mexicodiveapp.logic.model.Dive;
-import org.springframework.stereotype.Repository;
 
 import java.time.LocalDate;
 import java.util.List;
 
-@Repository
 public interface DiveRepository {
 
     List<Dive> getAllDives();

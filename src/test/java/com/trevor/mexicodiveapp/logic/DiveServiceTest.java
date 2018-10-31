@@ -1,6 +1,6 @@
 package com.trevor.mexicodiveapp.logic;
 
-import com.trevor.mexicodiveapp.data.MySqlDiveRepository;
+import com.trevor.mexicodiveapp.data.dive.MySqlDiveRepository;
 import com.trevor.mexicodiveapp.logic.model.Dive;
 import com.trevor.mexicodiveapp.logic.service.DiveService;
 import org.junit.Before;

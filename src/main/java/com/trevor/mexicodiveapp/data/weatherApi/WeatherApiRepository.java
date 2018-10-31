@@ -1,4 +1,4 @@
-package com.trevor.mexicodiveapp.data.apiWeather;
+package com.trevor.mexicodiveapp.data.weatherApi;
 
 import com.trevor.mexicodiveapp.logic.model.Weather;
 import com.trevor.mexicodiveapp.logic.repository.WeatherRepository;
@@ -13,7 +13,7 @@ import java.net.URI;
 
 @Repository
 @PropertySource("classpath:openWeatherApi.properties")
-public class ApiWeatherRepository implements WeatherRepository {
+public class WeatherApiRepository implements WeatherRepository {
 
 
     private static final String PATH = "weather";
@@ -25,13 +25,13 @@ public class ApiWeatherRepository implements WeatherRepository {
     @Value("${api.weather.apikey.value}")
     private String API_KEY;
     private RestTemplate restTemplate;
-    private ApiWeatherMapper apiWeatherMapper;
+    private WeatherApiMapper weatherApiMapper;
 
 
     @Autowired
-    public ApiWeatherRepository(RestTemplate restTemplate, ApiWeatherMapper apiWeatherMapper) {
+    public WeatherApiRepository(RestTemplate restTemplate, WeatherApiMapper weatherApiMapper) {
         this.restTemplate = restTemplate;
-        this.apiWeatherMapper = apiWeatherMapper;
+        this.weatherApiMapper = weatherApiMapper;
     }
 
     @Override
@@ -42,7 +42,7 @@ public class ApiWeatherRepository implements WeatherRepository {
                 .queryParam(QUERY, city)
                 .queryParam(APPID, API_KEY)
                 .build();
-        return apiWeatherMapper.apiWeatherMapper(restTemplate.getForObject(uri, ApiWeatherResponse.class));
+        return weatherApiMapper.apiWeatherMapper(restTemplate.getForObject(uri, WeatherApiResponse.class));
     }
 
     @Override
@@ -54,7 +54,7 @@ public class ApiWeatherRepository implements WeatherRepository {
                 .queryParam("lon", lon)
                 .queryParam(APPID, API_KEY)
                 .build();
-        return apiWeatherMapper.apiWeatherMapper(restTemplate.getForObject(uri, ApiWeatherResponse.class));
+        return weatherApiMapper.apiWeatherMapper(restTemplate.getForObject(uri, WeatherApiResponse.class));
     }
 
 

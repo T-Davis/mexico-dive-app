@@ -1,4 +1,4 @@
-package com.trevor.mexicodiveapp.data.apiWeather;
+package com.trevor.mexicodiveapp.data.weatherApi;
 
 import org.springframework.stereotype.Component;
 

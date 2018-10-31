@@ -1,17 +1,19 @@
-package com.trevor.mexicodiveapp.logic.security;
+package com.trevor.mexicodiveapp.security.apiSecurity;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class ApiSecurityService {
 
-    ApiSecurityRepository apiSecurityRepository;
+    private ApiSecurityRepository apiSecurityRepository;
 
     @Autowired
     public ApiSecurityService(ApiSecurityRepository apiSecurityRepository) {
         this.apiSecurityRepository = apiSecurityRepository;
     }
 
-    public ApiToken getApiToken(String username, String password) {
-        return apiSecurityRepository.getApiToken(username, password);
+    public ApiToken getApiToken() {
+        return apiSecurityRepository.getApiToken();
     }
 }

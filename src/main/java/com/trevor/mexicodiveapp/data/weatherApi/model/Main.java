@@ -1,4 +1,4 @@
-package com.trevor.mexicodiveapp.data.apiWeather.apiWeatherObjects;
+package com.trevor.mexicodiveapp.data.weatherApi.model;
 
 public class Main {
     private Double temp;

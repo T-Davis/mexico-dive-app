@@ -1,4 +1,4 @@
-package com.trevor.mexicodiveapp.data;
+package com.trevor.mexicodiveapp.data.dive;
 
 import com.trevor.mexicodiveapp.logic.model.Dive;
 import com.trevor.mexicodiveapp.logic.repository.DiveRepository;
@@ -19,7 +19,7 @@ import java.util.List;
 @Repository
 public class MySqlDiveRepository implements DiveRepository {
     private final DiveRowMapper rowMapper = new DiveRowMapper();
-    private final String diveTable = "dives";
+    private final String tableName = "dives";
 
     private NamedParameterJdbcTemplate jdbcTemplate;
 
@@ -30,33 +30,33 @@ public class MySqlDiveRepository implements DiveRepository {
 
     @Override
     public List<Dive> getAllDives() {
-        return jdbcTemplate.query("SELECT * FROM " + diveTable, rowMapper);
+        return jdbcTemplate.query("SELECT * FROM " + tableName, rowMapper);
     }
 
     @Override
     public List<Dive> getDiveByLocation(String location) {
-        String query = "SELECT * FROM " + diveTable + " WHERE d_location = :location ";
+        String query = "SELECT * FROM " + tableName + " WHERE d_location = :location ";
         SqlParameterSource namedParameters = new MapSqlParameterSource().addValue("location", location);
         return jdbcTemplate.query(query, namedParameters, rowMapper);
     }
 
     @Override
     public List<Dive> getDiveByDate(LocalDate date) {
-        String query = "SELECT * FROM " + diveTable + " WHERE d_date = :date";
+        String query = "SELECT * FROM " + tableName + " WHERE d_date = :date";
         SqlParameterSource namedParameters = new MapSqlParameterSource().addValue("date", date);
         return jdbcTemplate.query(query, namedParameters, rowMapper);
     }
 
     @Override
     public Dive getDiveById(int id) {
-        String query = "SELECT * FROM " + diveTable + " WHERE d_id = :id";
+        String query = "SELECT * FROM " + tableName + " WHERE d_id = :id";
         SqlParameterSource namedParameters = new MapSqlParameterSource().addValue("id", id);
         return jdbcTemplate.queryForObject(query, namedParameters, rowMapper);
     }
 
     @Override
     public Dive save(Dive dive) {
-        String query = "INSERT INTO " + diveTable + " VALUES(null, :date, :location, :durationInMinutes, :maxDepthInMeters, :waterConditions, :safetyStop)";
+        String query = "INSERT INTO " + tableName + " VALUES(null, :date, :location, :durationInMinutes, :maxDepthInMeters, :waterConditions, :safetyStop)";
         KeyHolder key = new GeneratedKeyHolder();
         SqlParameterSource namedParameters = new BeanPropertySqlParameterSource(dive);
         jdbcTemplate.update(query, namedParameters, key);
@@ -66,7 +66,7 @@ public class MySqlDiveRepository implements DiveRepository {
 
     @Override
     public Dive updateDiveById(int id, Dive dive) {
-        String query = "UPDATE " + diveTable + " SET d_date=:date, d_location = :location, d_duration_in_minutes = :durationInMinutes, " +
+        String query = "UPDATE " + tableName + " SET d_date=:date, d_location = :location, d_duration_in_minutes = :durationInMinutes, " +
                 "d_max_depth_in_meters = :maxDepthInMeters, d_water_conditions = :waterConditions, d_safety_stop = :safetyStop " +
                 "WHERE d_id = :id";
         SqlParameterSource namedParameters = new BeanPropertySqlParameterSource(dive);
@@ -77,7 +77,7 @@ public class MySqlDiveRepository implements DiveRepository {
     @Override
     public Dive delete(int id) {
         Dive dive = getDiveById(id);
-        String query = "DELETE FROM " + diveTable + " WHERE d_id = :id";
+        String query = "DELETE FROM " + tableName + " WHERE d_id = :id";
         SqlParameterSource namedParameters = new MapSqlParameterSource().addValue("id", id);
         jdbcTemplate.update(query, namedParameters);
         return dive;

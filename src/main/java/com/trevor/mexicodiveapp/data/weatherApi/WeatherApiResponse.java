@@ -1,8 +1,8 @@
-package com.trevor.mexicodiveapp.data.apiWeather;
+package com.trevor.mexicodiveapp.data.weatherApi;
 
-import com.trevor.mexicodiveapp.data.apiWeather.apiWeatherObjects.*;
+import com.trevor.mexicodiveapp.data.weatherApi.model.*;
 
-public class ApiWeatherResponse {
+public class WeatherApiResponse {
     private Coordinates coord;
     private Weather[] weather;
     private String base;

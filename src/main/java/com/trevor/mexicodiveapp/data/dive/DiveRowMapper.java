@@ -1,4 +1,4 @@
-package com.trevor.mexicodiveapp.data;
+package com.trevor.mexicodiveapp.data.dive;
 
 import com.trevor.mexicodiveapp.logic.model.Dive;
 import org.springframework.jdbc.core.RowMapper;
