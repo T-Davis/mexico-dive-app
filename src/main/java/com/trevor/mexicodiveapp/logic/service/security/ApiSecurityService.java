@@ -1,5 +1,7 @@
-package com.trevor.mexicodiveapp.security.apiSecurity;
+package com.trevor.mexicodiveapp.logic.service.security;
 
+import com.trevor.mexicodiveapp.logic.model.security.ApiToken;
+import com.trevor.mexicodiveapp.logic.repository.security.ApiSecurityRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -1,5 +1,7 @@
-package com.trevor.mexicodiveapp.security.apiSecurity;
+package com.trevor.mexicodiveapp.data.security;
 
+import com.trevor.mexicodiveapp.logic.model.security.ApiToken;
+import com.trevor.mexicodiveapp.logic.repository.security.ApiSecurityRepository;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;

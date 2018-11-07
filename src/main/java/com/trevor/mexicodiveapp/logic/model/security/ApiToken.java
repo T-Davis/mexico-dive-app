@@ -1,4 +1,4 @@
-package com.trevor.mexicodiveapp.security.apiSecurity;
+package com.trevor.mexicodiveapp.logic.model.security;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

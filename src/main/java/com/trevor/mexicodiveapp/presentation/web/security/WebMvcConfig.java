@@ -1,4 +1,4 @@
-package com.trevor.mexicodiveapp.security.webSecurity;
+package com.trevor.mexicodiveapp.presentation.web.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

@@ -1,7 +1,7 @@
 package com.trevor.mexicodiveapp.data.weatherApi;
 
 import com.trevor.mexicodiveapp.logic.model.Weather;
-import com.trevor.mexicodiveapp.logic.repository.WeatherRepository;
+import com.trevor.mexicodiveapp.logic.repository.weatherApi.WeatherRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
