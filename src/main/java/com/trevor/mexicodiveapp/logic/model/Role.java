@@ -1,15 +1,32 @@
 package com.trevor.mexicodiveapp.logic.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import java.io.Serializable;
 
-@Data
-@Builder
-@AllArgsConstructor
-@NoArgsConstructor
-public class Role {
-    private int id;
+public class Role implements Serializable {
+    private Integer id;
     private String role;
+
+    public Role() {
+    }
+
+    public Role(Integer id, String role) {
+        this.id = id;
+        this.role = role;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
 }

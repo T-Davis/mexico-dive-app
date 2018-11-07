@@ -38,7 +38,7 @@ public class MySqlUserRepository implements UserRepository {
 
     @Override
     public User save(User user) {
-        String query = "INSERT INTO " + tableName + " VALUES(null, :email, :password, :name, :lastName, :active, :roles)";
+        String query = "INSERT INTO " + tableName + " VALUES(null, :active, :email, :lastName, :name, :password )";
         KeyHolder key = new GeneratedKeyHolder();
         SqlParameterSource namedParameters = new BeanPropertySqlParameterSource(user);
         jdbcTemplate.update(query, namedParameters, key);

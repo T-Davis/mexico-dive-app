@@ -8,7 +8,6 @@ import org.hibernate.validator.constraints.Length;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
-import java.util.Set;
 
 @Data
 @Builder
@@ -16,7 +15,7 @@ import java.util.Set;
 @NoArgsConstructor
 public class User {
 
-    private int id;
+    private Integer id;
     @Email(message = "*Please provide a valid Email")
     @NotEmpty(message = "*Please provide an email")
     private String email;
@@ -27,7 +26,6 @@ public class User {
     private String name;
     @NotEmpty(message = "*Please provide your last name")
     private String lastName;
-    private int active;
-    private Set<Role> roles;
+    private Integer active;
 
 }

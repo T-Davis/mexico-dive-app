@@ -6,6 +6,7 @@ import java.time.LocalDate;
 
 //todo refactor with lombok
 //todo refactor DB naming for consistency
+//todo no primitive types!
 public class Dive {
     private int id;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
