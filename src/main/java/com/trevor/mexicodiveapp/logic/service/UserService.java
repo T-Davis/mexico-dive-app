@@ -2,6 +2,7 @@ package com.trevor.mexicodiveapp.logic.service;
 
 import com.trevor.mexicodiveapp.logic.model.Role;
 import com.trevor.mexicodiveapp.logic.model.User;
+import com.trevor.mexicodiveapp.logic.model.security.Credentials;
 import com.trevor.mexicodiveapp.logic.repository.RoleRepository;
 import com.trevor.mexicodiveapp.logic.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,11 +34,15 @@ public class UserService {
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         user.setActive(1);
         Role userRole = roleRepository.findByRole("ADMIN");
-        user.setRoles(new HashSet<Role>(Arrays.asList(userRole)));
+        user.setRoles(new HashSet<>(Arrays.asList(userRole)));
         return userRepository.save(user);
     }
 
-    public User findByEmailAndPassword(String email, String password) {
-        return userRepository.findByEmailAndPassword(email, password);
+    public Boolean validateUser(Credentials credentials) {
+        User user = userRepository.findByEmail(credentials.getEmail());
+        if (user == null) {
+            return false;
+        }
+        return bCryptPasswordEncoder.matches(credentials.getPassword(), user.getPassword());
     }
 }

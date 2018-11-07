@@ -9,21 +9,21 @@
     <nav>
         <ul class="nav nav-pills pull-right">
             <li role="presentation" th:classappend="${#httpServletRequest.getRequestURI() == '/home' ? 'active':''}"><a
-                    href="home">Home</a></li>
+                    href="/home">Home</a></li>
             <li role="presentation" th:classappend="${#httpServletRequest.getRequestURI() == '/dives' ? 'active':''}"><a
-                    href="dives">Dives</a></li>
+                    href="/dives">Dives</a></li>
             <li role="presentation"
                 th:classappend="${#httpServletRequest.getRequestURI() == '/dives/add' ? 'active':''}"><a
-                    href="add">Add</a></li>
+                    href="/dives/add">Add</a></li>
             <li role="presentation"
                 th:classappend="${#httpServletRequest.getRequestURI() == '/dives/search' ? 'active':''}"><a
-                    href="search">Search</a></li>
+                    href="/dives/search">Search</a></li>
             <li role="presentation" th:classappend="${#httpServletRequest.getRequestURI() == '/about' ? 'active':''}"><a
-                    href="about">About</a></li>
+                    href="/about">About</a></li>
             <li role="presentation" th:classappend="${#httpServletRequest.getRequestURI() == '/contact' ? 'active':''}">
-                <a href="contact">Contact</a></li>
+                <a href="/contact">Contact</a></li>
             <li role="presentation" th:classappend="${#httpServletRequest.getRequestURI() == '/login' ? 'active':''}">
-                <a href="login">Login</a></li>
+                <a href="/login">Login</a></li>
         </ul>
     </nav>
     <h3 class="text-muted">T Dive Shop</h3>

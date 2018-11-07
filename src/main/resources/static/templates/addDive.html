@@ -6,7 +6,7 @@
 <body class="container">
 <div th:replace="fragments/header :: header"></div>
 
-<form th:action="@{/add}" th:object="${dive}" method="POST">
+<form th:action="@{/dives/add}" th:object="${dive}" method="POST">
     <div class="form-group row">
         <label for="date" class="col-sm-2 col-form-label">Date</label>
         <div class="col-sm-10">

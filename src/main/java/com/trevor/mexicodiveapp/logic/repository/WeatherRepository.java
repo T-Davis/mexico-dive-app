@@ -1,4 +1,4 @@
-package com.trevor.mexicodiveapp.logic.repository.weatherApi;
+package com.trevor.mexicodiveapp.logic.repository;
 
 import com.trevor.mexicodiveapp.logic.model.Weather;
 

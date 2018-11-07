@@ -3,6 +3,7 @@ package com.trevor.mexicodiveapp.data.user;
 import com.trevor.mexicodiveapp.logic.model.User;
 import com.trevor.mexicodiveapp.logic.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
@@ -28,7 +29,11 @@ public class MySqlUserRepository implements UserRepository {
     public User findByEmail(String email) {
         String query = "SELECT * FROM " + tableName + " WHERE email = :email";
         SqlParameterSource namedParameters = new MapSqlParameterSource().addValue("email", email);
-        return jdbcTemplate.queryForObject(query, namedParameters, rowMapper);
+        try {
+            return jdbcTemplate.queryForObject(query, namedParameters, rowMapper);
+        } catch (EmptyResultDataAccessException e) {
+            return null;
+        }
     }
 
     @Override

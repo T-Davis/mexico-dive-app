@@ -1,11 +1,12 @@
 package com.trevor.mexicodiveapp.presentation.api;
 
 import com.trevor.mexicodiveapp.logic.model.Dive;
+import com.trevor.mexicodiveapp.logic.model.security.ApiToken;
 import com.trevor.mexicodiveapp.logic.service.DiveService;
+import com.trevor.mexicodiveapp.logic.service.security.ApiTokenService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import javax.annotation.Resource;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -13,21 +14,24 @@ import java.util.List;
 @RequestMapping("/api/user/logbook/dives")
 public class DiveController {
 
-    @Resource
     private DiveService diveService;
+    private ApiTokenService tokenService;
 
     @Autowired
-    public DiveController(DiveService diveService) {
+    public DiveController(DiveService diveService, ApiTokenService tokenService) {
         this.diveService = diveService;
+        this.tokenService = tokenService;
     }
 
     @GetMapping
     public List<Dive> getAllDives() {
+        tokenService.validateToken(new ApiToken());//todo token must be taken from parameters
         return diveService.getAllDives();
     }
 
     @GetMapping("/location/{location}")
     public List<Dive> getDiveByLocation(@PathVariable String location) {
+
         return diveService.getDiveByLocation(location);
     }
 
@@ -36,7 +40,7 @@ public class DiveController {
         return diveService.getDiveByDate(LocalDate.parse(date));
     }
 
-    @GetMapping("/id/{id}")
+    @GetMapping("/{id}")
     public Dive getDiveById(@PathVariable Integer id) {
         return diveService.getDiveById(id);
     }
