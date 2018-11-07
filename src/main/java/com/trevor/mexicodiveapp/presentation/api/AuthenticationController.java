@@ -1,10 +1,9 @@
-package com.trevor.mexicodiveapp.presentation.api.security;
+package com.trevor.mexicodiveapp.presentation.api;
 
-import com.trevor.mexicodiveapp.logic.model.User;
 import com.trevor.mexicodiveapp.logic.model.security.ApiToken;
 import com.trevor.mexicodiveapp.logic.model.security.Credentials;
 import com.trevor.mexicodiveapp.logic.service.UserService;
-import com.trevor.mexicodiveapp.logic.service.security.ApiSecurityService;
+import com.trevor.mexicodiveapp.logic.service.security.ApiTokenService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -14,23 +13,24 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api/authenticate")
-public class ApiSecurityController {
+public class AuthenticationController {
 
-    private ApiSecurityService apiSecurityService;
+    private ApiTokenService apiTokenService;
     private UserService userService;
 
     @Autowired
-    public ApiSecurityController(ApiSecurityService apiSecurityService, UserService userService) {
-        this.apiSecurityService = apiSecurityService;
+    public AuthenticationController(ApiTokenService apiTokenService, UserService userService) {
+        this.apiTokenService = apiTokenService;
         this.userService = userService;
     }
 
     @PostMapping
     public ApiToken getApiToken(@RequestBody Credentials credentials) {
-        User user = userService.findByEmailAndPassword(credentials.getEmail(), credentials.getPassword());
-        if (!user.getEmail().equals(credentials.getEmail()) || !user.getPassword().equals(credentials.getPassword())) {
-            return null;
+        if (userService.validateUser(credentials)) {
+            return apiTokenService.createToken(credentials);
         }
-        return apiSecurityService.getApiToken();
+        return null;
     }
+
+
 }
