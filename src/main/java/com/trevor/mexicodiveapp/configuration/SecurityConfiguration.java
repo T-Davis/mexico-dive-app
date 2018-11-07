@@ -19,11 +19,14 @@ import javax.sql.DataSource;
 @PropertySource("classpath:application.properties")
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
-    @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
+    private DataSource dataSource;
 
     @Autowired
-    private DataSource dataSource;
+    public SecurityConfiguration(BCryptPasswordEncoder bCryptPasswordEncoder, DataSource dataSource) {
+        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
+        this.dataSource = dataSource;
+    }
 
     @Value("${spring.queries.users-query}")
     private String usersQuery;

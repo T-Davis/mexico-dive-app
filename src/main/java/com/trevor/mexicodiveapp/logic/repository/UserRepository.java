@@ -7,5 +7,4 @@ public interface UserRepository {
 
     User save(User user);
 
-    User findByEmailAndPassword(String email, String password);
 }

@@ -4,6 +4,7 @@ import com.trevor.mexicodiveapp.logic.model.security.ApiToken;
 import com.trevor.mexicodiveapp.logic.repository.ApiTokenRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class MySqlApiTokenRepository implements ApiTokenRepository {
 
+    private final ApiTokenRowMapper rowMapper = new ApiTokenRowMapper();
     private final String tableName = "api_token";
 
     private NamedParameterJdbcTemplate jdbcTemplate;
@@ -33,8 +35,15 @@ public class MySqlApiTokenRepository implements ApiTokenRepository {
         return apiToken;
     }
 
+    private ApiToken getToken(ApiToken apiToken) {
+        String query = "SELECT * FROM " + tableName + " WHERE token = :token";
+        SqlParameterSource namedParameters = new MapSqlParameterSource().addValue("token", apiToken);
+        return jdbcTemplate.queryForObject(query, namedParameters, rowMapper);
+    }
+
     @Override
     public boolean isTokenValid(ApiToken apiToken) {
-        return false;//todo check if token exist in db
+        ApiToken tokenFromDB = getToken(apiToken);
+        return tokenFromDB != null;
     }
 }

@@ -4,6 +4,8 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
 
+//todo refactor with lombok
+//todo refactor DB naming for consistency
 public class Dive {
     private int id;
     @DateTimeFormat(pattern = "yyyy-MM-dd")

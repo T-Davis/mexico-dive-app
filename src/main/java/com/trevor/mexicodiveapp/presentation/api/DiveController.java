@@ -24,8 +24,8 @@ public class DiveController {
     }
 
     @GetMapping
-    public List<Dive> getAllDives() {
-        tokenService.validateToken(new ApiToken());//todo token must be taken from parameters
+    public List<Dive> getAllDives(@RequestParam ApiToken apiToken) {
+        tokenService.validateToken(apiToken);//todo token must be taken from parameters
         return diveService.getAllDives();
     }
 

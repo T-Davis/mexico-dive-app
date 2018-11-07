@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 
+//todo complete implementation
 @RestController
 @RequestMapping("/api/user/statistics")
 public class StatisticsController {

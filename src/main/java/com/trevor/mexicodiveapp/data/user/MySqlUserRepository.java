@@ -26,9 +26,9 @@ public class MySqlUserRepository implements UserRepository {
     }
 
     @Override
-    public User findByEmail(String email) {
+    public User findByEmail(String emailParam) {
         String query = "SELECT * FROM " + tableName + " WHERE email = :email";
-        SqlParameterSource namedParameters = new MapSqlParameterSource().addValue("email", email);
+        SqlParameterSource namedParameters = new MapSqlParameterSource().addValue("email", emailParam);
         try {
             return jdbcTemplate.queryForObject(query, namedParameters, rowMapper);
         } catch (EmptyResultDataAccessException e) {
@@ -46,10 +46,4 @@ public class MySqlUserRepository implements UserRepository {
         return user;
     }
 
-    @Override
-    public User findByEmailAndPassword(String email, String password) {
-        String query = "SELECT * FROM " + tableName + " WHERE email = :email and password = :password";
-        SqlParameterSource namedParameters = new MapSqlParameterSource().addValue("email", email).addValue("password", password);
-        return jdbcTemplate.queryForObject(query, namedParameters, rowMapper);
-    }
 }
