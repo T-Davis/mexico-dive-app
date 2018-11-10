@@ -2,10 +2,12 @@ package com.trevor.mexicodiveapp.data.role;
 
 import com.trevor.mexicodiveapp.logic.model.Role;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Component;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+@Component
 public class RoleRowMapper implements RowMapper<Role> {
 
     @Override

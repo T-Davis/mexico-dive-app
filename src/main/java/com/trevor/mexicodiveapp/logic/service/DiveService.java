@@ -37,8 +37,8 @@ public class DiveService {
         return diveRepository.save(dive);
     }
 
-    public Dive updateDiveById(int id, Dive dive) {
-        return diveRepository.updateDiveById(id, dive);
+    public Dive updateDiveById(Dive dive) {
+        return diveRepository.updateDiveById(dive);
     }
 
     public Dive delete(int id) {

@@ -51,8 +51,8 @@ public class DivesController {
     }
 
     @DeleteMapping("/{id}")
-    public String deleteDive(@ModelAttribute("id") int id) {
-        diveService.delete(id);
+    public String deleteDive(@PathVariable("id") String id) {
+        diveService.delete(Integer.valueOf(id));
         return "redirect:/dives";
     }
 }

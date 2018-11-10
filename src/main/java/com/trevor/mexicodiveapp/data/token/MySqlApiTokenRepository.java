@@ -1,8 +1,9 @@
-package com.trevor.mexicodiveapp.data.security;
+package com.trevor.mexicodiveapp.data.token;
 
 import com.trevor.mexicodiveapp.logic.model.security.ApiToken;
 import com.trevor.mexicodiveapp.logic.repository.ApiTokenRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
@@ -24,7 +25,6 @@ public class MySqlApiTokenRepository implements ApiTokenRepository {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-
     @Override
     public ApiToken saveApiToken(ApiToken apiToken) {
         String query = "INSERT INTO " + tableName + " VALUES(null, :token)";
@@ -35,15 +35,18 @@ public class MySqlApiTokenRepository implements ApiTokenRepository {
         return apiToken;
     }
 
+    @Override
+    public boolean isTokenValid(ApiToken apiToken) {
+        return getToken(apiToken) != null;
+    }
+
     private ApiToken getToken(ApiToken apiToken) {
         String query = "SELECT * FROM " + tableName + " WHERE token = :token";
         SqlParameterSource namedParameters = new MapSqlParameterSource().addValue("token", apiToken);
-        return jdbcTemplate.queryForObject(query, namedParameters, rowMapper);
-    }
-
-    @Override
-    public boolean isTokenValid(ApiToken apiToken) {
-        ApiToken tokenFromDB = getToken(apiToken);
-        return tokenFromDB != null;
+        try {
+            return jdbcTemplate.queryForObject(query, namedParameters, rowMapper);
+        } catch (EmptyResultDataAccessException e) {
+            return null;
+        }
     }
 }

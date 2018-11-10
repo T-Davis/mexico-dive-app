@@ -28,6 +28,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         this.dataSource = dataSource;
     }
 
+    //todo check if it's better to have security queries in application.properties
     @Value("${spring.queries.users-query}")
     private String usersQuery;
 
@@ -57,7 +58,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/admin/**").hasAuthority("ADMIN").anyRequest()
                 .authenticated().and().csrf().disable().formLogin()
                 .loginPage("/login").failureUrl("/login?error=true")
-                .defaultSuccessUrl("/admin/home")
+                .defaultSuccessUrl("/home", true)
                 .usernameParameter("email")
                 .passwordParameter("password")
                 .and().logout()

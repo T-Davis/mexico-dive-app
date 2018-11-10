@@ -31,14 +31,15 @@ public class UserService {
     public User saveUser(User user) {
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         user.setActive(1);
-        userRoleService.saveRelation(user, roleRepository.findByRole("ADMIN"));
-        return userRepository.save(user);
+        User savedUser = userRepository.save(user);
+        userRoleService.saveRelation(savedUser, roleRepository.findByRole("ADMIN"));
+        return savedUser;
     }
 
     public Boolean validateUser(Credentials credentials) {
         User user = userRepository.findByEmail(credentials.getEmail());
         if (user == null) {
-            return false;
+            throw new InvalidUserException("Invalid user");//todo check why is not being thrown when we dont use valid credentials
         }
         return bCryptPasswordEncoder.matches(credentials.getPassword(), user.getPassword());
     }

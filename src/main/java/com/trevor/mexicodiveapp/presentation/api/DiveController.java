@@ -11,7 +11,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/user/logbook/dives")
+@RequestMapping("/api/dives")
 public class DiveController {
 
     private DiveService diveService;
@@ -24,8 +24,8 @@ public class DiveController {
     }
 
     @GetMapping
-    public List<Dive> getAllDives(@RequestParam ApiToken apiToken) {
-        tokenService.validateToken(apiToken);//todo token must be taken from parameters
+    public List<Dive> getAllDives(@RequestParam String apiToken) {
+        tokenService.validateToken(ApiToken.builder().token(apiToken).build());
         return diveService.getAllDives();
     }
 
@@ -52,7 +52,8 @@ public class DiveController {
 
     @PutMapping("/{id}")
     public Dive updateDiveById(@PathVariable int id, @RequestBody Dive dive) {
-        return diveService.updateDiveById(id, dive);
+        dive.setId(id);
+        return diveService.updateDiveById(dive);
     }
 
     @DeleteMapping("/{id}")

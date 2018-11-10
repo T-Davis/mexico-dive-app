@@ -24,8 +24,6 @@
         <td colspan="2"> No Dives Available</td>
     </tr>
     <tr th:each="dive : ${dives}">
-
-        <form action="#" th:action="@{/dives/${dive.id}}" method="delete">
             <td th:text="${dive.id}"/>
             <td th:text="${dive.date}"/>
             <td th:text="${dive.location}"/>
@@ -34,9 +32,10 @@
             <td th:text="${dive.waterConditions}"/>
             <td th:text="${dive.safetyStop}"/>
             <td>
-                <button type="submit" class="btn btn-primary">Delete</button>
+                <form action="#" th:action="@{/dives/${dive.id}}" method="delete">
+                    <button type="submit" class="btn btn-primary">Delete</button>
+                </form>
             </td>
-        </form>
     </tr>
     </tbody>
 </table>

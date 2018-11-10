@@ -13,6 +13,7 @@ buildscript {
 apply plugin: 'java'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
+apply plugin: 'war'
 
 group = 'com.trevor'
 version = '0.0.1-SNAPSHOT'
@@ -24,12 +25,16 @@ repositories {
 
 
 dependencies {
-    implementation('org.springframework.boot:spring-boot-starter-security')
     implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation('org.springframework.boot:spring-boot-starter-security')
     implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
-    implementation group: 'org.springframework', name: 'spring-jdbc', version: '5.1.2.RELEASE'
+    implementation 'org.springframework.boot:spring-boot-starter-jdbc'
+    implementation('org.springframework.boot:spring-boot-starter-cache')
+
     implementation group: 'mysql', name: 'mysql-connector-java', version: '8.0.12'
+
     implementation group: 'org.apache.commons', name: 'commons-lang3', version: '3.8.1'
+
     implementation group: 'org.webjars', name: 'bootstrap', version: '4.1.3'
     compileOnly('org.projectlombok:lombok')
 

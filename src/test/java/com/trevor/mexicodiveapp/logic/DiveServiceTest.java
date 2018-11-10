@@ -31,13 +31,13 @@ public class DiveServiceTest {
 
     @Before
     public void setUp() {
-        diveList = new ArrayList<>();
         mySqlDiveRepositoryMock = Mockito.mock(MySqlDiveRepository.class);
         diveService = new DiveService(mySqlDiveRepositoryMock);
 
         dive1 = new Dive();
         dive1.setLocation("Bull shark dive");
         dive1.setDate(DATE);
+        diveList = new ArrayList<>();
         diveList.add(dive1);
 
         dive2 = new Dive();
@@ -96,12 +96,12 @@ public class DiveServiceTest {
 
     @Test
     public void whenUpdatingDiveById_shouldUpdateDiveById() {
-        when(mySqlDiveRepositoryMock.updateDiveById(dive2Id, dive2)).thenReturn(diveFromRepository);
+        when(mySqlDiveRepositoryMock.updateDiveById(dive2)).thenReturn(diveFromRepository);
 
-        Dive updatedDive = diveService.updateDiveById(dive2Id, dive2);
+        Dive updatedDive = diveService.updateDiveById(dive2);
 
         assertThat(updatedDive).isEqualTo(diveFromRepository);
-        verify(mySqlDiveRepositoryMock).updateDiveById(dive2Id, dive2);
+        verify(mySqlDiveRepositoryMock).updateDiveById(dive2);
     }
 
     @Test

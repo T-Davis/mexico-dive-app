@@ -15,22 +15,24 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class MySqlUserRepository implements UserRepository {
 
-    private final UserRowMapper rowMapper = new UserRowMapper();
-    private final String tableName = "user";
+    private static final String TABLE_NAME = "user";
 
+    private UserRowMapper rowMapper;
     private NamedParameterJdbcTemplate jdbcTemplate;
 
     @Autowired
-    public MySqlUserRepository(NamedParameterJdbcTemplate jdbcTemplate) {
+    public MySqlUserRepository(UserRowMapper rowMapper, NamedParameterJdbcTemplate jdbcTemplate) {
+        this.rowMapper = rowMapper;
         this.jdbcTemplate = jdbcTemplate;
     }
 
     @Override
     public User findByEmail(String emailParam) {
-        String query = "SELECT * FROM " + tableName + " WHERE email = :email";
+        String query = "SELECT * FROM " + TABLE_NAME + " WHERE email = :email";
         SqlParameterSource namedParameters = new MapSqlParameterSource().addValue("email", emailParam);
         try {
-            return jdbcTemplate.queryForObject(query, namedParameters, rowMapper);
+            User user = jdbcTemplate.queryForObject(query, namedParameters, rowMapper);
+            return user;
         } catch (EmptyResultDataAccessException e) {
             return null;
         }
@@ -38,7 +40,7 @@ public class MySqlUserRepository implements UserRepository {
 
     @Override
     public User save(User user) {
-        String query = "INSERT INTO " + tableName + " VALUES(null, :active, :email, :lastName, :name, :password )";
+        String query = "INSERT INTO " + TABLE_NAME + " VALUES(null, :active, :email, :lastName, :name, :password )";
         KeyHolder key = new GeneratedKeyHolder();
         SqlParameterSource namedParameters = new BeanPropertySqlParameterSource(user);
         jdbcTemplate.update(query, namedParameters, key);

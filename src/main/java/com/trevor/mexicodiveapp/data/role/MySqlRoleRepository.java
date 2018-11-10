@@ -11,19 +11,20 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class MySqlRoleRepository implements RoleRepository {
 
-    private final RoleRowMapper rowMapper = new RoleRowMapper();
-    private final String tableName = "role";
+    private static final String TABLE_NAME = "role";
 
+    private RoleRowMapper rowMapper;
     private NamedParameterJdbcTemplate jdbcTemplate;
 
     @Autowired
-    public MySqlRoleRepository(NamedParameterJdbcTemplate jdbcTemplate) {
+    public MySqlRoleRepository(RoleRowMapper rowMapper, NamedParameterJdbcTemplate jdbcTemplate) {
+        this.rowMapper = rowMapper;
         this.jdbcTemplate = jdbcTemplate;
     }
 
     @Override
     public Role findByRole(String role) {
-        String query = "SELECT * FROM " + tableName + " WHERE role = :role";
+        String query = "SELECT * FROM " + TABLE_NAME + " WHERE role = :role";
         SqlParameterSource namedParameters = new MapSqlParameterSource().addValue("role", role);
         return jdbcTemplate.queryForObject(query, namedParameters, rowMapper);
     }

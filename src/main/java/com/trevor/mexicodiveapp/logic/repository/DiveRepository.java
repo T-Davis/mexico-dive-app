@@ -17,7 +17,7 @@ public interface DiveRepository {
 
     Dive save(Dive dive);
 
-    Dive updateDiveById(int id, Dive dive);
+    Dive updateDiveById(Dive dive);
 
     Dive delete(int id);
 

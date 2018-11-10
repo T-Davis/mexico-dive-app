@@ -1,4 +1,4 @@
-package com.trevor.mexicodiveapp.data.security;
+package com.trevor.mexicodiveapp.data.token;
 
 import com.trevor.mexicodiveapp.logic.model.security.ApiToken;
 import org.springframework.jdbc.core.RowMapper;

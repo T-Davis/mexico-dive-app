@@ -2,10 +2,12 @@ package com.trevor.mexicodiveapp.data.dive;
 
 import com.trevor.mexicodiveapp.logic.model.Dive;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Component;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+@Component
 class DiveRowMapper implements RowMapper<Dive> {
     @Override
     public Dive mapRow(ResultSet rs, int rowNum) throws SQLException {
