@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
 
@@ -21,38 +22,40 @@ public class DivesController {
         this.diveService = diveService;
     }
 
-    @GetMapping("/search")
-    public String search(Model model) {
-        return "searchDives";
+    //todo: refactor names of methods - save, getById, etc, through all layers
+    @GetMapping
+    public ModelAndView dives(Model model) {
+        model.addAttribute("dives", diveService.getAllDives());
+        return new ModelAndView("dives");
     }
 
-    @GetMapping
-    public String dives(Model model) {
-        model.addAttribute("dives", diveService.getAllDives());
-        return "dives";
+    @GetMapping("/search")
+    public ModelAndView search() {
+        return new ModelAndView("searchDives");
     }
 
     @GetMapping("/add")
-    public String addDive(Model model) {
+    public ModelAndView addDive(Model model) {
+        //todo: test if this is necessary
         model.addAttribute("dive", new Dive());
-        return "addDive";
+        return new ModelAndView("addDive");
     }
 
     @PostMapping("/add")
-    public String diveSubmit(@ModelAttribute("dive") Dive dive) {
+    public ModelAndView diveSubmit(@ModelAttribute("dive") Dive dive) {
         diveService.save(dive);
-        return "redirect:/dives";
+        return new ModelAndView("redirect:/dives");
     }
 
     @GetMapping("/{id}")
-    public String deleteDive(Model model) {
+    public ModelAndView deleteDive(Model model) {
         model.addAttribute("dive", new Dive());
-        return "redirect:/dives";
+        return new ModelAndView("redirect:/dives");
     }
 
     @DeleteMapping("/{id}")
-    public String deleteDive(@PathVariable("id") String id) {
+    public ModelAndView deleteDive(@PathVariable("id") String id) {
         diveService.delete(Integer.valueOf(id));
-        return "redirect:/dives";
+        return new ModelAndView("redirect:/dives");
     }
 }
