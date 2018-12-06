@@ -24,7 +24,7 @@ public class ApiTokenService {
 
     public void validateToken(ApiToken apiToken) {
         if (!apiTokenRepository.isTokenValid(apiToken)) {
-            throw new ApiTokenInvalidException("Invalidn Token");
+            throw new ApiTokenInvalidException("Invalid Token");
         }
     }
 }

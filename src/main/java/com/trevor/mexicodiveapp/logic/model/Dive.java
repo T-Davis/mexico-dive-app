@@ -20,6 +20,7 @@ public class Dive {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate date;
     private String location;
+    private Double durationInMinutes;
     private Double maxDepthInMeters;
     private String waterConditions;
     private Boolean safetyStop;

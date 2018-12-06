@@ -29,6 +29,7 @@ public class UserService {
     }
 
     public User saveUser(User user) {
+        //todo: should the password be encoded in the controller?
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         user.setActive(1);
         User savedUser = userRepository.save(user);
@@ -39,7 +40,7 @@ public class UserService {
     public Boolean validateUser(Credentials credentials) {
         User user = userRepository.findByEmail(credentials.getEmail());
         if (user == null) {
-            throw new InvalidUserException("Invalid user");//todo check why is not being thrown when we dont use valid credentials
+            throw new InvalidUserException("Invalid user");//todo check why this is not being thrown when we don't use valid credentials
         }
         return bCryptPasswordEncoder.matches(credentials.getPassword(), user.getPassword());
     }
